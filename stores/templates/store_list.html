@@ -76,7 +76,7 @@
 									</header>
 									<p align="center"> {{store.description}}</p>
 									<footer class="align-center">
-										<a href="" class="button alt">View Products</a>
+										<a href="{% url 'details' store_slug=store.slug %}" class="button alt">View Products</a>
 									</footer>
 								</div>
 							</div>
@@ -84,7 +84,25 @@
                     {% endfor %}
 					</div>
 				</div>
+
+				<div class="pagination" style="text-align: center;">
+				    <span class="step-links">
+				        {% if stores.has_previous %}
+				            <a href="?page={{ stores.previous_page_number }}" class='button alt'>previous</a>
+				        {% endif %}
+
+				        <span class="current">
+				            Page {{ stores.number }} of {{ stores.paginator.num_pages }}.
+				        </span>
+
+				        {% if stores.has_next %}
+				            <a href="?page={{ stores.next_page_number }}" class='button alt'>next</a>
+				        {% endif %}
+				    </span>
+				</div>
 			</section>
+
+
 
 		<!-- Two -->
 			<section id="two" class="wrapper style3" style="background-image: url('{% static 'images/bg.jpg' %}')">
@@ -95,7 +113,6 @@
 					</header>
 				</div>
 			</section>
-
 
 		<!-- Footer -->
 			<footer id="footer">
